@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders'
+
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Setting free all external request. This is not a good practice but for the test
+# I want to focus in others things.
+CORS_ORIGIN_ALLOW_ALL = True
+
+# An example of cors whitelist
+# CORS_ORIGIN_WHITELIST = (
+#     'localhost:8080'
+# )

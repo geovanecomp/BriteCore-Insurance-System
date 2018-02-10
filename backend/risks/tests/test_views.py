@@ -50,7 +50,7 @@ class GetSingleRiskTypeTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 class CreateNewRiskTypeTest(TestCase):
-    """ Test module for inserting a new puppy """
+    """ Test module for inserting a new risk type """
 
     def setUp(self):
         self.valid_risk_type = {
@@ -73,6 +73,38 @@ class CreateNewRiskTypeTest(TestCase):
     def test_create_invalid_risk_type(self):
         response = client.post(
             reverse('get_post_risk_type'),
+            data=json.dumps(self.invalid_risk_type),
+            content_type='application/json'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+class UpdateSingleRiskTypeTest(TestCase):
+    """ Test module for update a single risk type """
+
+    def setUp(self):
+        self.risk_type = RiskType.objects.create(name='Test Risk1')
+
+        self.valid_risk_type = {
+            'name': 'Updated Test Risk'
+        }
+
+        self.invalid_risk_type =  {
+            'name': ''
+        }
+
+    def test_update_valid_risk_type(self):
+        response = client.put(
+            reverse('get_delete_update_risk_type', kwargs={'pk': self.risk_type.pk}),
+            data=json.dumps(self.valid_risk_type),
+            content_type='application/json'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_update_invalid_risk_type(self):
+        response = client.put(
+            reverse('get_delete_update_risk_type', kwargs={'pk': self.risk_type.pk}),
             data=json.dumps(self.invalid_risk_type),
             content_type='application/json'
         )

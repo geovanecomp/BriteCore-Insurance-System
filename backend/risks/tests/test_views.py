@@ -1,13 +1,9 @@
-import json
 from rest_framework import status
 from django.test import TestCase, Client
 from django.urls import reverse
 from ..models import RiskType
 from ..serializer import RiskTypeSerializer
-
-from pprint import pprint
-
-
+import json
 client = Client()
 
 class GetAllRiskTypes(TestCase):
@@ -52,3 +48,33 @@ class GetSingleRiskTypeTest(TestCase):
             reverse('get_delete_update_risk_type',  kwargs={'pk': invalid_id}))
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+class CreateNewRiskTypeTest(TestCase):
+    """ Test module for inserting a new puppy """
+
+    def setUp(self):
+        self.valid_risk_type = {
+            'name': 'Test Risk'
+        }
+
+        self.invalid_risk_type =  {
+            'name': ''
+        }
+
+    def test_create_valid_risk_type(self):
+        response = client.post(
+            reverse('get_post_risk_type'),
+            data=json.dumps(self.valid_risk_type),
+            content_type='application/json'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_create_invalid_risk_type(self):
+        response = client.post(
+            reverse('get_post_risk_type'),
+            data=json.dumps(self.invalid_risk_type),
+            content_type='application/json'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

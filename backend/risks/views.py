@@ -16,7 +16,8 @@ def get_delete_update_risk_type(request, pk):
 
     # get details of a single risk type
     if request.method == 'GET':
-        return Response({})
+        serializer = RiskTypeSerializer(risk_type)
+        return Response(serializer.data)
     # delete a single risk type
     elif request.method == 'DELETE':
         return Response({})

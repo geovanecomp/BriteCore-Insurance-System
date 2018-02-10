@@ -33,4 +33,11 @@ def get_post_risk_type(request):
         serializer = RiskTypeSerializer(risk_types, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        return Response({})
+        data = {
+            'name': request.data.get('name')
+        }
+        serializer = RiskTypeSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

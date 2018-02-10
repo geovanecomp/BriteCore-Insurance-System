@@ -6,4 +6,4 @@ class RiskType(models.Model):
     name = models.CharField(max_length=100, null=False)
 
     def __repr__(self):
-        return self.name + ' risk type is added.'
+        return self.name + ' is added.'

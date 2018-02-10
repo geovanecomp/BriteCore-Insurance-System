@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import RiskType
+from ..models import RiskType
 
 class RiskTypeTestCase(TestCase):
     """ Test module for RiskType model """

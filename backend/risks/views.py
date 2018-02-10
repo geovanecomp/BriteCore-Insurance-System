@@ -1,3 +1,35 @@
-from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import RiskType
+from .serializer import RiskTypeSerializer
+
+@api_view(['GET', 'DELETE', 'PUT'])
+
+def get_delete_update_risk_type(request, pk):
+    try:
+        risk_type = RiskType.objects.get(pk=pk)
+    except RiskType.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    # get details of a single risk type
+    if request.method == 'GET':
+        return Response({})
+    # delete a single risk type
+    elif request.method == 'DELETE':
+        return Response({})
+    elif request.method == 'PUT':
+        return Response({})
+
+@api_view(['GET', 'POST'])
+def get_post_risk_type(request):
+    # get all risk types
+    if request.method == 'GET':
+        risk_types = RiskType.objects.all()
+        # To serialize a queryset, should use many=True
+        serializer = RiskTypeSerializer(risk_types, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        return Response({})

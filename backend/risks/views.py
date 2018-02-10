@@ -22,7 +22,11 @@ def get_delete_update_risk_type(request, pk):
     elif request.method == 'DELETE':
         return Response({})
     elif request.method == 'PUT':
-        return Response({})
+        serializer = RiskTypeSerializer(risk_type, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
 def get_post_risk_type(request):

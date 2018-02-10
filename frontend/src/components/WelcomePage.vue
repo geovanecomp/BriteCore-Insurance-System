@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: 'HelloBriteCore',
+  name: 'WelcomePage',
   data () {
     return {
       welcomeMessage: 'Welcome to BriteCore Insurance Administration System'

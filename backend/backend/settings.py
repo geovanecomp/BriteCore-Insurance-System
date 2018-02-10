@@ -139,6 +139,13 @@ CORS_ORIGIN_ALLOW_ALL = True
 # )
 
 
+# Django REST Framework
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
+
 if ENVIRONMENT == 'production':
     DEBUG = False
     SECRET_KEY = os.getenv('SECRET_KEY')

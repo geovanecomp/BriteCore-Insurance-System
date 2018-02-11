@@ -121,10 +121,7 @@ class DeleteSingleRiskType(TestCase):
 
     def test_delete_valid_single_risk_type(self):
         response = client.delete(
-            reverse('get_delete_update_risk_type',  kwargs={'pk': self.risk_type1.pk}))
-
-        risk = RiskType.objects.get(pk=self.risk_type1.pk)
-        serializer = RiskTypeSerializer(risk)
+            reverse('get_delete_update_risk_type',  kwargs={'pk': self.risk_type1.pk}))        
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 

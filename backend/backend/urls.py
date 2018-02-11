@@ -4,5 +4,5 @@ from risk_types import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('risk_types/', include('risk_types.urls'))
+    path('risk-types/', include('risk_types.urls'))
 ]

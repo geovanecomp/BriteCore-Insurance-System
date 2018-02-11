@@ -28,7 +28,7 @@ class FieldTypeDetail(APIView):
     def get_object(self, pk):
         try:
             return FieldType.objects.get(pk=pk)
-    except FieldType.DoesNotExist:
+        except FieldType.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):

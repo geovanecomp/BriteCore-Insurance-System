@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class FieldType(models.Model):
     """Defines all field types"""
     name = models.CharField(max_length=100, null=False)

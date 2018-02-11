@@ -15,7 +15,7 @@ class GetAllRiskTypes(TestCase):
 
     def test_get_all_risk_types(self):
         # get API response
-        response = client.get(reverse('get_post_risk_type'))
+        response = client.get(reverse('risk_type'))
 
         # get data from db
         risk_types = RiskType.objects.all()
@@ -34,7 +34,7 @@ class GetSingleRiskTypeTest(TestCase):
 
     def test_get_valid_single_risk_type(self):
         response = client.get(
-            reverse('get_delete_update_risk_type',  kwargs={'pk': self.risk_type1.pk}))
+            reverse('risk_type_detail',  kwargs={'pk': self.risk_type1.pk}))
 
         risk = RiskType.objects.get(pk=self.risk_type1.pk)
         serializer = RiskTypeSerializer(risk)
@@ -45,7 +45,7 @@ class GetSingleRiskTypeTest(TestCase):
     def test_get_invalid_single_risk_type(self):
         invalid_id = 999
         response = client.get(
-            reverse('get_delete_update_risk_type',  kwargs={'pk': invalid_id}))
+            reverse('risk_type_detail',  kwargs={'pk': invalid_id}))
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
@@ -63,7 +63,7 @@ class CreateNewRiskTypeTest(TestCase):
 
     def test_create_valid_risk_type(self):
         response = client.post(
-            reverse('get_post_risk_type'),
+            reverse('risk_type'),
             data=json.dumps(self.valid_risk_type),
             content_type='application/json'
         )
@@ -72,7 +72,7 @@ class CreateNewRiskTypeTest(TestCase):
 
     def test_create_invalid_risk_type(self):
         response = client.post(
-            reverse('get_post_risk_type'),
+            reverse('risk_type'),
             data=json.dumps(self.invalid_risk_type),
             content_type='application/json'
         )
@@ -95,7 +95,7 @@ class UpdateSingleRiskTypeTest(TestCase):
 
     def test_update_valid_risk_type(self):
         response = client.put(
-            reverse('get_delete_update_risk_type', kwargs={'pk': self.risk_type.pk}),
+            reverse('risk_type_detail', kwargs={'pk': self.risk_type.pk}),
             data=json.dumps(self.valid_risk_type),
             content_type='application/json'
         )
@@ -104,7 +104,7 @@ class UpdateSingleRiskTypeTest(TestCase):
 
     def test_update_invalid_risk_type(self):
         response = client.put(
-            reverse('get_delete_update_risk_type', kwargs={'pk': self.risk_type.pk}),
+            reverse('risk_type_detail', kwargs={'pk': self.risk_type.pk}),
             data=json.dumps(self.invalid_risk_type),
             content_type='application/json'
         )
@@ -121,13 +121,13 @@ class DeleteSingleRiskType(TestCase):
 
     def test_delete_valid_single_risk_type(self):
         response = client.delete(
-            reverse('get_delete_update_risk_type',  kwargs={'pk': self.risk_type1.pk}))        
+            reverse('risk_type_detail',  kwargs={'pk': self.risk_type1.pk}))
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_delete_invalid_single_risk_type(self):
         invalid_id = 999
         response = client.delete(
-            reverse('get_delete_update_risk_type',  kwargs={'pk': invalid_id}))
+            reverse('risk_type_detail',  kwargs={'pk': invalid_id}))
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

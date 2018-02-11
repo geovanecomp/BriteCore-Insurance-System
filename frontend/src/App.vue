@@ -5,7 +5,7 @@
     </router-view>
 
     <router-view/>
-    
+
     <router-view name="footer">
       <main-footer class="footer"/>
     </router-view>

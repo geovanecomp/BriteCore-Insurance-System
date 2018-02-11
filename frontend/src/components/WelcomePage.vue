@@ -5,9 +5,7 @@
     <h2>Risk Management</h2>
     <ul>
       <li>
-        <a href="#" target="_blank">
-          Create the risk types
-        </a>
+        <router-link to="/risk-type">Create the risk types</router-link>
       </li>
       <li>
         <a href="#" target="_blank">
@@ -24,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'WelcomePage',
   data () {

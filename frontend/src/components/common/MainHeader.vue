@@ -2,7 +2,7 @@
   <header class="header">
     <img src="../../assets/britecore_logo_header.png" class="logo-resize">
     <div class="information">
-      <a href="#">Home</a>
+      <router-link to="/">Home</router-link>
       <a href="https://www.britecore.com/">Oficial Website</a>
     </div>
   </header>

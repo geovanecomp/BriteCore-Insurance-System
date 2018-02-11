@@ -20,7 +20,9 @@ def get_delete_update_risk_type(request, pk):
         return Response(serializer.data)
     # delete a single risk type
     elif request.method == 'DELETE':
-        return Response({})
+        risk_type.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    # update a single risk type
     elif request.method == 'PUT':
         serializer = RiskTypeSerializer(risk_type, data=request.data)
         if serializer.is_valid():

@@ -1,12 +1,27 @@
-<template>
+<template lang="html">
   <div id="app">
+    <router-view name="header">
+      <main-header class="header"/>
+    </router-view>
+
     <router-view/>
+    
+    <router-view name="footer">
+      <main-footer class="footer"/>
+    </router-view>
   </div>
 </template>
 
 <script>
+import MainHeader from '@/components/common/MainHeader'
+import MainFooter from '@/components/common/MainFooter'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    MainHeader,
+    MainFooter
+  }
 }
 </script>
 

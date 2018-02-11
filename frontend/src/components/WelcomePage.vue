@@ -20,21 +20,6 @@
         </a>
       </li>
     </ul>
-    <div class="contact-information">
-      <h2>Geovane Pacheco</h2>
-      <ul>
-        <li>
-          <a href="https://www.linkedin.com/in/geovane-pacheco/?locale=en_US" target="_blank">
-            LinkedIn
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/geovanecomp" target="_blank">
-            GitHub
-          </a>
-        </li>
-      </ul>
-    </div>
   </div>
 </template>
 

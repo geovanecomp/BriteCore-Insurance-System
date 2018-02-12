@@ -1,5 +1,5 @@
 from django.db import models
-from risks.models import RiskType
+from risk_types.models import RiskType
 
 class Risk(models.Model):
     """ Defines all risks """

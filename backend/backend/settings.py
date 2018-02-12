@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'risk_types',
     'risks',
     'field_types',
-    'fields'
+    'fields',
+    'fields_by_risk'
 ]
 
 MIDDLEWARE = [

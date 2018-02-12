@@ -29,11 +29,11 @@ class GetAllFieldTypes(TestCase):
 
     def test_get_all_field_types(self):
         # get API response
-        response = client.get(reverse('field_type'))
+        response = client.get(reverse('field_type'), format='json')
 
         # get data from db
         field_types = FieldType.objects.all()
-        serializer = FieldTypeSerializer(field_types, many=True)
+        serializer = FieldTypeSerializer(field_types, many=True)        
 
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -105,7 +105,7 @@ class UpdateSingleFieldTypeTest(TestCase):
             content_type='application/json'
         )
 
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_invalid_field_type(self):
         response = client.put(

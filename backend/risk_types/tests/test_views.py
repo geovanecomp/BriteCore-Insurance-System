@@ -106,7 +106,7 @@ class UpdateSingleRiskTypeTest(TestCase):
             content_type='application/json'
         )
 
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_invalid_risk_type(self):
         response = client.put(

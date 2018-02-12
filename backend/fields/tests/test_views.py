@@ -11,6 +11,7 @@ client = Client()
 def get_valid_object():
     valid_object = {
         'field_type': FieldType.objects.create(name='textfield'),
+        # 'field_type_id': FieldType.objects.create(name='textfield').id,
         'name':'Test Field1',
         'description':'Desc test1',
         'required': False
@@ -72,7 +73,12 @@ class CreateNewFieldTest(TestCase):
     """ Test module for inserting a new field """
 
     def setUp(self):
-        self.valid_field = get_valid_object()
+        self.valid_field = {
+            'field_type': FieldType.objects.create(name='textfield').id,
+            'name':'Test Field1',
+            'description':'Desc test1',
+            'required': False
+        }
 
         self.invalid_field =  get_invalid_object()
 
@@ -82,9 +88,7 @@ class CreateNewFieldTest(TestCase):
             data=json.dumps(self.valid_field),
             content_type='application/json'
         )
-        # print('***************************************************************')
-        # print(self.valid_field)
-        # print('***************************************************************')
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_field(self):
@@ -103,7 +107,12 @@ class UpdateSingleFieldTest(TestCase):
     def setUp(self):
         self.field = Field.objects.create(**get_valid_object())
 
-        self.valid_field = get_valid_object()
+        self.valid_field = {
+            'field_type': FieldType.objects.create(name='textfield').id,
+            'name':'Test Field1',
+            'description':'Desc test1',
+            'required': False
+        }
 
         self.invalid_field =  get_invalid_object()
 
@@ -114,7 +123,7 @@ class UpdateSingleFieldTest(TestCase):
             content_type='application/json'
         )
 
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_invalid_field(self):
         response = client.put(

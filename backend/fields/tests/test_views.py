@@ -35,7 +35,7 @@ class GetAllFields(TestCase):
 
     def test_get_all_fields(self):
         # get API response
-        response = client.get(reverse('field'))
+        response = client.get(reverse('field-list'))
 
         # get data from db
         fields = Field.objects.all()
@@ -54,7 +54,7 @@ class GetSingleFieldTest(TestCase):
 
     def test_get_valid_single_field(self):
         response = client.get(
-            reverse('field_detail',  kwargs={'pk': self.field1.pk}))
+            reverse('field-detail',  kwargs={'pk': self.field1.pk}))
 
         field = Field.objects.get(pk=self.field1.pk)
         serializer = FieldSerializer(field)
@@ -65,7 +65,7 @@ class GetSingleFieldTest(TestCase):
     def test_get_invalid_single_field(self):
         invalid_id = 999
         response = client.get(
-            reverse('field_detail',  kwargs={'pk': invalid_id}))
+            reverse('field-detail',  kwargs={'pk': invalid_id}))
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
@@ -84,7 +84,7 @@ class CreateNewFieldTest(TestCase):
 
     def test_create_valid_field(self):
         response = client.post(
-            reverse('field'),
+            reverse('field-list'),
             data=json.dumps(self.valid_field),
             content_type='application/json'
         )
@@ -93,7 +93,7 @@ class CreateNewFieldTest(TestCase):
 
     def test_create_invalid_field(self):
         response = client.post(
-            reverse('field'),
+            reverse('field-list'),
             data=json.dumps(self.invalid_field),
             content_type='application/json'
         )
@@ -118,7 +118,7 @@ class UpdateSingleFieldTest(TestCase):
 
     def test_update_valid_field(self):
         response = client.put(
-            reverse('field_detail', kwargs={'pk': self.field.pk}),
+            reverse('field-detail', kwargs={'pk': self.field.pk}),
             data=json.dumps(self.valid_field),
             content_type='application/json'
         )
@@ -127,7 +127,7 @@ class UpdateSingleFieldTest(TestCase):
 
     def test_update_invalid_field(self):
         response = client.put(
-            reverse('field_detail', kwargs={'pk': self.field.pk}),
+            reverse('field-detail', kwargs={'pk': self.field.pk}),
             data=json.dumps(self.invalid_field),
             content_type='application/json'
         )
@@ -144,13 +144,13 @@ class DeleteSingleField(TestCase):
 
     def test_delete_valid_single_field(self):
         response = client.delete(
-            reverse('field_detail',  kwargs={'pk': self.field1.pk}))
+            reverse('field-detail',  kwargs={'pk': self.field1.pk}))
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_delete_invalid_single_field(self):
         invalid_id = 999
         response = client.delete(
-            reverse('field_detail',  kwargs={'pk': invalid_id}))
+            reverse('field-detail',  kwargs={'pk': invalid_id}))
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

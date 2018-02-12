@@ -1,16 +1,10 @@
-from rest_framework import generics
+from rest_framework import viewsets
 
 from .models import Field
 from .serializer import FieldSerializer
 
-class FieldList(generics.ListCreateAPIView):
-    """ List all fields, or create a new field """
-
-    queryset = Field.objects.all()
-    serializer_class = FieldSerializer
-
-class FieldDetail(generics.RetrieveUpdateDestroyAPIView):
-    """ Retrieve, update or delete a field instance """
+class FieldViewSet(viewsets.ModelViewSet):
+    """ This viewset automatically provides `list` and `detail` actions. """
 
     queryset = Field.objects.all()
     serializer_class = FieldSerializer

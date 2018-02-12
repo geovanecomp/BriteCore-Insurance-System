@@ -7,7 +7,7 @@ from .models import Field
 from .serializer import FieldSerializer
 
 class FieldList(APIView):
-    """ List all field types, or create a new field type"""
+    """ List all fields, or create a new field """
 
     def get(self, request, format=None):
         field = Field.objects.all()
@@ -16,6 +16,7 @@ class FieldList(APIView):
 
     def post(self, request, format=None):
         serializer = FieldSerializer(data=request.data)
+        
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -23,7 +24,7 @@ class FieldList(APIView):
 
 
 class FieldDetail(APIView):
-    """ Retrieve, update or delete a field type instance """
+    """ Retrieve, update or delete a field instance """
 
     def get_object(self, pk):
         try:

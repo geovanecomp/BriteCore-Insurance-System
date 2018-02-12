@@ -14,11 +14,11 @@ def get_valid_object():
     return valid_object
 
 def get_invalid_object():
-    valid_object = {
+    invalid_object = {
         'name':'',
         'description':''
     }
-    return valid_object
+    return invalid_object
 
 class GetAllFieldTypes(TestCase):
     """ Test module for GET all field types API """

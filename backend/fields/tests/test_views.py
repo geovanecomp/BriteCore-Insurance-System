@@ -10,7 +10,7 @@ client = Client()
 
 def get_valid_object():
     valid_object = {
-        'field_type_id': FieldType.objects.create(name='textfield').id,
+        'field_type': FieldType.objects.create(name='textfield'),
         'name':'Test Field1',
         'description':'Desc test1',
         'required': False
@@ -18,13 +18,13 @@ def get_valid_object():
     return valid_object
 
 def get_invalid_object():
-    valid_object = {
-        'field_type_id': '',
-        'name': '',
-        'description': '',
+    invalid_object = {
+        'field_type': '',
+        'name':'',
+        'description':'',
         'required': ''
     }
-    return valid_object
+    return invalid_object
 
 class GetAllFields(TestCase):
     """ Test module for GET all fields API """
@@ -80,19 +80,22 @@ class CreateNewFieldTest(TestCase):
         response = client.post(
             reverse('field'),
             data=json.dumps(self.valid_field),
-            content='application/json'
+            content_type='application/json'
         )
-
+        # print('***************************************************************')
+        # print(self.valid_field)
+        # print('***************************************************************')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_field(self):
         response = client.post(
             reverse('field'),
             data=json.dumps(self.invalid_field),
-            content='application/json'
+            content_type='application/json'
         )
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
 
 class UpdateSingleFieldTest(TestCase):
     """ Test module for update a single field """
@@ -108,7 +111,7 @@ class UpdateSingleFieldTest(TestCase):
         response = client.put(
             reverse('field_detail', kwargs={'pk': self.field.pk}),
             data=json.dumps(self.valid_field),
-            content='application/json'
+            content_type='application/json'
         )
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
@@ -117,7 +120,7 @@ class UpdateSingleFieldTest(TestCase):
         response = client.put(
             reverse('field_detail', kwargs={'pk': self.field.pk}),
             data=json.dumps(self.invalid_field),
-            content='application/json'
+            content_type='application/json'
         )
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

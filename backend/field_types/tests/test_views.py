@@ -29,11 +29,11 @@ class GetAllFieldTypes(TestCase):
 
     def test_get_all_field_types(self):
         # get API response
-        response = client.get(reverse('field_type'), format='json')
+        response = client.get(reverse('fieldtype-list'), format='json')
 
         # get data from db
         field_types = FieldType.objects.all()
-        serializer = FieldTypeSerializer(field_types, many=True)        
+        serializer = FieldTypeSerializer(field_types, many=True)
 
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -48,7 +48,7 @@ class GetSingleFieldTypeTest(TestCase):
 
     def test_get_valid_single_field_type(self):
         response = client.get(
-            reverse('field_type_detail',  kwargs={'pk': self.field_type1.pk}))
+            reverse('fieldtype-detail',  kwargs={'pk': self.field_type1.pk}))
 
         field = FieldType.objects.get(pk=self.field_type1.pk)
         serializer = FieldTypeSerializer(field)
@@ -59,7 +59,7 @@ class GetSingleFieldTypeTest(TestCase):
     def test_get_invalid_single_field_type(self):
         invalid_id = 999
         response = client.get(
-            reverse('field_type_detail',  kwargs={'pk': invalid_id}))
+            reverse('fieldtype-detail',  kwargs={'pk': invalid_id}))
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
@@ -72,7 +72,7 @@ class CreateNewFieldTypeTest(TestCase):
 
     def test_create_valid_field_type(self):
         response = client.post(
-            reverse('field_type'),
+            reverse('fieldtype-list'),
             data=json.dumps(self.valid_field_type),
             content_type='application/json'
         )
@@ -81,7 +81,7 @@ class CreateNewFieldTypeTest(TestCase):
 
     def test_create_invalid_field_type(self):
         response = client.post(
-            reverse('field_type'),
+            reverse('fieldtype-list'),
             data=json.dumps(self.invalid_field_type),
             content_type='application/json'
         )
@@ -100,7 +100,7 @@ class UpdateSingleFieldTypeTest(TestCase):
 
     def test_update_valid_field_type(self):
         response = client.put(
-            reverse('field_type_detail', kwargs={'pk': self.field_type.pk}),
+            reverse('fieldtype-detail', kwargs={'pk': self.field_type.pk}),
             data=json.dumps(self.valid_field_type),
             content_type='application/json'
         )
@@ -109,7 +109,7 @@ class UpdateSingleFieldTypeTest(TestCase):
 
     def test_update_invalid_field_type(self):
         response = client.put(
-            reverse('field_type_detail', kwargs={'pk': self.field_type.pk}),
+            reverse('fieldtype-detail', kwargs={'pk': self.field_type.pk}),
             data=json.dumps(self.invalid_field_type),
             content_type='application/json'
         )
@@ -126,13 +126,13 @@ class DeleteSingleFieldType(TestCase):
 
     def test_delete_valid_single_field_type(self):
         response = client.delete(
-            reverse('field_type_detail',  kwargs={'pk': self.field_type1.pk}))
+            reverse('fieldtype-detail',  kwargs={'pk': self.field_type1.pk}))
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_delete_invalid_single_field_type(self):
         invalid_id = 999
         response = client.delete(
-            reverse('field_type_detail',  kwargs={'pk': invalid_id}))
+            reverse('fieldtype-detail',  kwargs={'pk': invalid_id}))
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

@@ -1,17 +1,10 @@
-from rest_framework import generics
+from rest_framework import viewsets
 
 from .models import RiskType
 from .serializer import RiskTypeSerializer
 
-class RiskTypeList(generics.ListCreateAPIView):
-    """ List all risk types, or create a new risk type"""
-
-    queryset = RiskType.objects.all()
-    serializer_class = RiskTypeSerializer
-
-
-class RiskTypeDetail(generics.RetrieveUpdateDestroyAPIView):
-    """ Retrieve, update or delete a risk type instance """
+class RiskTypeViewSet(viewsets.ModelViewSet):
+    """ This viewset automatically provides `list` and `detail` actions. """
 
     queryset = RiskType.objects.all()
     serializer_class = RiskTypeSerializer

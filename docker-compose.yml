@@ -1,0 +1,26 @@
+version: '3'
+services:
+    frontend:
+        build:
+            # dockerfile: ./frontend/Dockerfile
+            context: ./frontend
+        depends_on:
+            - "backend"
+        volumes:
+            - "./frontend/dist:/usr/src/app/dist"
+
+    backend:
+        build:
+            # dockerfile: ./Dockerfile
+            context: ./backend
+        depends_on:
+            - "mysql"
+
+    mysql:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=1
+            # - MYSQL_DATABASE=britecore_insurance_system
+        restart: always
+        volumes:
+            - "./backend/queries/createschema.sql:/docker-entrypoint-initdb.d/createschema.sql"

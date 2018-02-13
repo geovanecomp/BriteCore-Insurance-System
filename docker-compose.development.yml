@@ -1,0 +1,22 @@
+version: '3'
+services:
+    frontend:
+        volumes:
+            - "./frontend/src:/usr/src/app/src"
+            - "./frontend/package.json:/usr/src/app/package.json"
+            - "./frontend/package-lock.json:/usr/src/app/package-lock.json"            
+        ports:
+            - "8080:8080"
+        command: npm run dev
+
+    backend:
+        volumes:
+            - "./backend:/usr/src/app"
+        ports:
+            - "8000:8000"
+        command:  bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+
+
+    mysql:
+        volumes:
+            - "./volumes/mysql:/var/lib/mysql"

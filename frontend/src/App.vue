@@ -1,3 +1,4 @@
+<style src="./style/index.scss" lang="scss"></style>
 <template lang="html">
   <div id="app">
     <router-view name="header">

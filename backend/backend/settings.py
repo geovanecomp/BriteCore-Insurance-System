@@ -88,9 +88,9 @@ DATABASES = {
     'default': {
          'NAME': 'britecore_insurance_system',
          'ENGINE': 'django.db.backends.mysql',
-         'USER': 'geovane',
+         'USER': 'root',
          'PASSWORD': '',
-         'HOST': 'localhost',
+         'HOST': 'mysql',
          'PORT': '3306'
      }
 }

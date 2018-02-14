@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import MainHeader from '@/components/common/MainHeader'
 import MainFooter from '@/components/common/MainFooter'
 import WelcomePage from '@/components/WelcomePage'
-import ManageRiskType from '@/components/risk-type/ManageRiskType'
+import ManageRiskType from '@/components/risk-type/view/ManageRiskType'
 
 Vue.use(Router)
 

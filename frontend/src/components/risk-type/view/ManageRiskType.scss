@@ -1,0 +1,70 @@
+@import "src/style/_colors";
+
+.manage-risk-type {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  .manage-risk-type--content {
+    display: flex;
+    padding: 10px 10px;
+
+   .manage-risk-type--content-fields {
+      display: flex;
+      flex-direction: row;
+      text-align: left;
+
+      .manage-risk-type--action-new {
+        border: 0;
+        border-radius: 20px;
+        background-color: $success;
+        color: #fff;
+        font-size: 1em;
+        &:active {
+          transform: translateY(2px);
+        }
+      }
+    }
+
+    .manage-risk-type--content-header {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      font-size: .9em;
+      font-weight: bold;
+      background-color: $dark-default;
+      width: 100%;
+      color: #fff;
+    }
+
+    .manage-risk-type--list {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      width: 100%;
+      border-left: 1px solid $default;
+      border-right: 1px solid $default;
+      border-bottom: 1px solid $default;
+      max-height: 60vh;
+      overflow-y: auto;
+
+      > li:nth-child(even) {
+        background: #ccc;
+      }
+
+      .icon-garbage {
+        fill: $cancel;
+        widows: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+      .icon-edit {
+        fill: $dark-default;
+        widows: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}

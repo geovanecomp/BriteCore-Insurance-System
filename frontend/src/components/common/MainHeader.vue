@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <img src="../../assets/britecore_logo_header.png" class="logo-resize">
+    <img src="/static/images/britecore_logo_header.png" class="logo-resize">
     <div class="information">
       <router-link to="/">Home</router-link>
       <a href="https://www.britecore.com/">Oficial Website</a>
@@ -10,12 +10,7 @@
 
 <script>
 export default {
-  name: 'MainHeader',
-  data () {
-    return {
-
-    }
-  }
+  name: 'MainHeader'
 }
 </script>
 
@@ -44,8 +39,6 @@ a {
   left: 0;
   top: 0;
   width: 100%;
-  /*text-align: center;*/
-  /*background-color: red;*/
   margin: 10px;
 }
 

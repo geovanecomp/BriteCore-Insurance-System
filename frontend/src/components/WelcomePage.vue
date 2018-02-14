@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <img src="../assets/britecore_logo.png" class="logo-resize">
+    <img src="/static/images/britecore_logo.png" class="logo-resize">
     <h1>{{ welcomeMessage }}</h1>
     <h2>Risk Management</h2>
     <ul>

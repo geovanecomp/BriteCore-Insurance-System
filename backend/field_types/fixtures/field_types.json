@@ -1,0 +1,10 @@
+[
+  {
+    "model": "field_types.FieldType",
+    "pk": 1,
+    "fields": {
+      "name": "Textfield",
+      "description": "A textfield"
+    }
+  }
+]

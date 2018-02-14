@@ -2,19 +2,23 @@ version: '3'
 services:
     nginx:
         image: nginx:1.13.8
+        container_name: nginx
+        networks:
+            - production-network
         ports:
             - "80:80"
         depends_on:
             - "backend"
             - "frontend"
         volumes:
-          - "./frontend/dist:/var/www/frontend"
-          - "./nginx.conf:/etc/nginx/nginx.conf"
-          - "./uwsgi_params:/etc/nginx/uwsgi_params"        
+            - "./frontend/dist:/var/www/frontend"
+            - "./frontend/package-lock.json:/usr/src/app/package-lock.json"
+            - "./nginx.conf:/etc/nginx/nginx.conf"
+            - "./uwsgi_params:/etc/nginx/uwsgi_params"
 
     frontend:
         volumes:
-          - "./frontend/dist:/usr/src/app/dist"
+            - "./frontend/dist:/usr/src/app/dist"
         command: npm run build
 
     backend:
@@ -22,7 +26,6 @@ services:
             - "8000:8000"
         command:  bash -c "python3 manage.py migrate && uwsgi --http :8000 --module backend.wsgi"
 
-    # mysql:
-        # TODO: Define the local storare
-        # volumes:
-        #     - "./volumes/mysql:/var/lib/mysql"
+    mysql:
+        volumes:
+            - "./volumes/mysql:/var/lib/mysql"

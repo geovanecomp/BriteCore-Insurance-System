@@ -1,8 +1,10 @@
 version: '3'
 services:
     frontend:
+        container_name: frontend
+        networks:
+            - production-network
         build:
-            # dockerfile: ./frontend/Dockerfile
             context: ./frontend
         depends_on:
             - "backend"
@@ -10,17 +12,26 @@ services:
             - "./frontend/dist:/usr/src/app/dist"
 
     backend:
+        container_name: backend
+        networks:
+            - production-network
         build:
-            # dockerfile: ./Dockerfile
             context: ./backend
         depends_on:
             - "mysql"
 
     mysql:
+        container_name: mysql
+        networks:
+            - production-network
         image: mysql:5.7
         environment:
             - MYSQL_ALLOW_EMPTY_PASSWORD=1
-            # - MYSQL_DATABASE=britecore_insurance_system
+            - MYSQL_DATABASE=britecore_insurance_system
         restart: always
-        volumes:
-            - "./backend/queries/createschema.sql:/docker-entrypoint-initdb.d/createschema.sql"
+        # volumes:
+            # - "./backend/queries/createschema.sql:/docker-entrypoint-initdb.d/createschema.sql"
+
+networks:
+    production-network:
+        driver: bridge

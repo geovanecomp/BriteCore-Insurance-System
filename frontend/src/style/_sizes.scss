@@ -1,0 +1,23 @@
+/**
+* GRID SYSTEM
+*/
+$sizes: (
+  xg: (90, 200, #0FF),
+  lg: (64, 90, #F0F),
+  md: (48, 64, #00F),
+  sm: (30, 48, #0F0),
+  xs: (0, 30, #F00)
+);
+
+$gutter-width: 1rem;
+$gutter-compensation: calc((var($gutter-width) * 0.5) * -1);
+$half-gutter-width: calc((var($gutter-width) * 0.5));
+$grid-columns: 12;
+
+$main-header__height-full: 50px;
+
+/**
+* Fields are textbox, combobox, list-items ...
+*/
+$fieldset__height: 2.5em;
+$label__height: 1.5em;

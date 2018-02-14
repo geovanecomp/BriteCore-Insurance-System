@@ -1,0 +1,17 @@
+$default: #929292;
+$dark-default: #4d4d4d;
+$light-default: #6f6f6f;
+
+$scroll-bar-default: #F5F5F5;
+
+$header-default: darken(#1d4063, 2);
+$menu-options-default: darken($header-default, 10);
+
+$focus-light: #4b64f1;
+$button-action: #0055d4;
+$button-action-light: #1065e4;
+
+$success: #60b964;
+$success-hover: lighten($success, 5);
+
+$cancel: #bd3737;

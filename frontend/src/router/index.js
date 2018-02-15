@@ -4,6 +4,7 @@ import MainHeader from '@/components/common/MainHeader'
 import MainFooter from '@/components/common/MainFooter'
 import WelcomePage from '@/components/WelcomePage'
 import ManageRiskType from '@/components/risk-type/view/ManageRiskType'
+import ManageRisk from '@/components/risk/view/ManageRisk'
 
 Vue.use(Router)
 
@@ -24,6 +25,15 @@ export default new Router({
       name: 'ManageRiskType',
       components: {
         default: ManageRiskType,
+        header: MainHeader,
+        footer: MainFooter
+      }
+    },
+    {
+      path: '/risk',
+      name: 'ManageRisk',
+      components: {
+        default: ManageRisk,
         header: MainHeader,
         footer: MainFooter
       }

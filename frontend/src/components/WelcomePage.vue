@@ -8,9 +8,7 @@
         <router-link to="/risk-type">Create the risk types</router-link>
       </li>
       <li>
-        <a href="#" target="_blank">
-          Manage them
-        </a>
+        <router-link to="/risk">Manage them</router-link>
       </li>
       <li>
         <a href="#" target="_blank">

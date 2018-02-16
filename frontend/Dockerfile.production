@@ -1,0 +1,7 @@
+FROM nginx:1.13.8
+
+MAINTAINER Geovane Pacheco <geovane.pacheco99@gmail.com>
+
+COPY ./dist /usr/share/nginx/html
+
+EXPOSE 80

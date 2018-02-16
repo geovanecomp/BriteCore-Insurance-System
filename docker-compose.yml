@@ -4,12 +4,8 @@ services:
         container_name: frontend
         networks:
             - production-network
-        build:
-            context: ./frontend
         depends_on:
             - "backend"
-        volumes:
-            - "./frontend/dist:/usr/src/app/dist"
 
     backend:
         container_name: backend
@@ -18,6 +14,8 @@ services:
         build:
             context: ./backend
         depends_on:
+            - "mysql"
+        links:
             - "mysql"
 
     mysql:
@@ -29,6 +27,8 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=1
             - MYSQL_DATABASE=britecore_insurance_system
         restart: always
+        ports:
+            - "3306:3306"
         # volumes:
             # - "./backend/queries/createschema.sql:/docker-entrypoint-initdb.d/createschema.sql"
 

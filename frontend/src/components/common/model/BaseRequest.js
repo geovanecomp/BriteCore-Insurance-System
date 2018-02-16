@@ -1,4 +1,5 @@
 import axios from 'axios'
+import serverConfig from '../../../config.js'
 
 let _instance = null
 
@@ -13,13 +14,6 @@ export default class BaseRequest {
   }
 
   defineBaseConfig (config) {
-    let serverConfig = {
-      baseURL: 'http://localhost:8000/',
-      timeout: 50000,
-      authentication: true,
-      responseType: 'json', // default
-      maxRedirects: 5 // defaul
-    }
     return serverConfig
   }
 

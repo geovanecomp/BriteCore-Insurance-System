@@ -10,7 +10,7 @@
     :class="requiredRule"
     @blur="isSelected"
     @change="selected">
-    <option v-for="item in content" :value="item.id" >{{ item.name }}</option>
+    <option v-for="item in content" :key='item.id' :value="item.id" >{{ item.name }}</option>
   </select>
 </div>
 </template>
@@ -27,7 +27,7 @@ export default {
     },
     content: {
       type: Array,
-      default() { return []}
+      default () { return [] }
     },
     label: {
       default: 'Text'

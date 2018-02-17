@@ -25,7 +25,7 @@
         </li>
       </div>
       <div class="manage-risk--list">
-        <li v-for="(field, idx) in risks">
+        <li v-for="(field, idx) in risks" :key='idx'>
           <ul class="row">
             <li class="col-4">{{ field.fieldType | fieldTypeFilter(fieldTypes)}}</li>
             <li class="col-6">{{ field.fieldName }}</li>
@@ -99,23 +99,23 @@ export default {
     },
     registerNewFieldsByRisk (pRisks) {
       if (this.risks.length > 0) {
-        this.manageRiskModel.createRisk({
+        let riskObj = {
           name: this.form.riskName,
           risk_type: this.form.riskType
-        })
-        .then((res) => {
-          this.manageRiskModel.createFieldsByRisk(res.data.id, pRisks)
-            .then((res) => {
-              this.cleanFields()
-              toast.success('Fields by risk created', 'Success!')
-            })
-        })
-        .catch((error) => {
-          console.error(error)
-          toast.error('Server internal error', 'Error!')
-        })
-      }
-      else {
+        }
+        this.manageRiskModel.createRisk(riskObj)
+          .then((res) => {
+            this.manageRiskModel.createFieldsByRisk(res.data.id, pRisks)
+              .then((res) => {
+                this.cleanFields()
+                toast.success('Fields by risk created', 'Success!')
+              })
+          })
+          .catch((error) => {
+            console.error(error)
+            toast.error('Server internal error', 'Error!')
+          })
+      } else {
         toast.error('A field by risk is required', 'Field Required')
       }
     },

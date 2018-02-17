@@ -47,13 +47,13 @@ export default {
   watch: {
     value (pVal, pValOld) {
       this.inputValue = this.value
-      if(this.value) {
+      if (this.value) {
         this.$emit('rule', this.label, false)
       }
       if (this.inputValue) {
         this.selected = 'focused'
       }
-      if (this.isRequired && this.value.length == 0) {
+      if (this.isRequired && this.value.length === 0) {
         this.$emit('rule', this.label, true)
       }
     },
@@ -84,12 +84,12 @@ export default {
       } else {
         this.requiredRule = ''
         this.$emit('input', this.inputValue)
-        this.$emit('rule', this.label,false)
+        this.$emit('rule', this.label, false)
       }
     },
     verifyRules () {
       if (this.isRequired) {
-        this.$emit('rule', this.label,true)
+        this.$emit('rule', this.label, true)
       }
     }
   }

@@ -21,7 +21,7 @@
         </li>
       </div>
       <div class="manage-risk-type--list">
-        <li v-for="(risk, idx) in riskTypes">
+        <li v-for="(risk, idx) in riskTypes" :key='idx'>
           <ul class="row">
             <li class="col-4">{{ risk.name }}</li>
             <li class="col-6">{{ risk.description }}</li>
@@ -83,8 +83,7 @@ export default {
             console.error(error)
             toast.error('Server internal error', 'Error!')
           })
-      }
-      else {
+      } else {
         toast.error('Name is required', 'Field Required')
       }
     },
@@ -129,6 +128,6 @@ export default {
           console.error(error)
         })
     }
-  },
+  }
 }
 </script>

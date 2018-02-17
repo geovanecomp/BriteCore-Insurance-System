@@ -3,15 +3,15 @@
   <section class="manage-risk">
     <h1>Manage the Risks</h1>
     <div class="manage-risk--type-content row">
-      <combobox v-model="form.risk_type" :content="riskTypes" label="risk type" class="col-6"/>
-      <textbox v-model="form.name" label="name" class="col-6" :is-required="true"/>
+      <combofield v-model="form.risk_type" :content="riskTypes" label="risk type" class="col-6"/>
+      <textfield v-model="form.name" label="name" class="col-6" :is-required="true"/>
     </div>
 
     <div class="manage-risk--content row">
       <h3>Add the risk fields</h3>
       <form @submit.stop.prevent="handleNewField(form)" class="manage-risk--content-fields row">
-        <combobox v-model="form.fieldType" :content="fieldTypes" label="field type" class="col-4"/>
-        <textbox v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
+        <combofield v-model="form.fieldType" :content="fieldTypes" label="field type" class="col-4"/>
+        <textfield v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
         <button class="manage-risk--action-new col-2">+</button>
       </form>
 
@@ -44,15 +44,15 @@
 <script>
 import ManageRiskTypeModel from '@/components/risk-type/model/ManageRiskTypeModel'
 import ManageRiskModel from '../model/ManageRiskModel'
-import Textbox from '@/components/common/textbox/Textbox'
-import Combobox from '@/components/common/combobox/Combobox'
+import Textfield from '@/components/common/textfield/Textfield'
+import Combofield from '@/components/common/combofield/Combofield'
 import { IconEdit, IconGarbage } from '@/components/common/icon'
 
 export default {
   name: 'ManageRisk',
   components: {
-    Textbox,
-    Combobox,
+    Textfield,
+    Combofield,
     IconEdit,
     IconGarbage
   },

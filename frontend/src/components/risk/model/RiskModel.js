@@ -6,8 +6,20 @@ class RiskModel extends BaseModel {
   }
 
   getRisksByRiskType (pRiskTypeId) {
+    const riskByTypeUri = this.defineEndPointURI() + 'list-by-risk-type/'
     return new Promise((resolve, reject) => {
-      this._request.get(this.defineEndPointURI() + 'list-by-risk-type/', {risk_type_id: pRiskTypeId}).then((response) => {
+      this._request.get(riskByTypeUri, {risk_type_id: pRiskTypeId}).then((response) => {
+        resolve(response)
+      }).catch((pErr) => {
+        reject(pErr)
+      })
+    })
+  }
+
+  getFieldsByRisk (pRiskId) {
+    const fieldByRiskUri = 'fields-by-risk/list-fields-by-risk/'
+    return new Promise((resolve, reject) => {
+      this._request.get(fieldByRiskUri, {risk_id: pRiskId}).then((response) => {
         resolve(response)
       }).catch((pErr) => {
         reject(pErr)
@@ -15,4 +27,5 @@ class RiskModel extends BaseModel {
     })
   }
 }
+
 export default new RiskModel()

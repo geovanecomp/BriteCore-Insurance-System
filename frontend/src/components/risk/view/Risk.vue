@@ -3,15 +3,24 @@
   <section class="risk">
     <h1>Select the risk</h1>
     <div class="risk--type-content row">
-      <combobox v-model="form.risk_type" :content="riskTypes" label="risk type" class="col-6"/>
-      <combobox v-model="form.risk" :content="risks" label="risk" class="col-6"/>
+      <combofield v-model="form.risk_type" :content="riskTypes" label="risk type" class="col-6"/>
+      <combofield v-model="form.risk" :content="risks" label="risk" class="col-6"/>
     </div>
 
     <div class="risk--content row">
       <h3>Add the risk fields</h3>
+      <!-- <combofield v-model="form.risk" :content="risks" label="risk" class="col-6"/>
+      <combofield v-model="form.risk" :content="risks" label="risk" class="col-6"/>
+      <textfield v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
+      <textfield v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/> -->
+
+      <component v-for="(field, idx) in fieldsByRisk" :key='idx'
+      :is="Textfield">
+      </component>
+
       <form @submit.stop.prevent="handleNewField(form)" class="risk--content-fields row">
-        <combobox v-model="form.fieldType" :content="fieldTypes" label="field type" class="col-4"/>
-        <textbox v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
+        <combofield v-model="form.fieldType" :content="fieldTypes" label="field type" class="col-4"/>
+        <textfield v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
         <button class="risk--action-new col-2">+</button>
       </form>
 
@@ -38,6 +47,7 @@
     <div class="actions col-12">
       <button class="button--save col-4" disabled @click="registerNewFieldsByRisk(fields)">Save</button>
     </div>
+    {{fieldsByRisk}}
   </section>
 </template>
 
@@ -45,15 +55,17 @@
 import ManageRiskTypeModel from '@/components/risk-type/model/ManageRiskTypeModel'
 import ManageRiskModel from '../model/ManageRiskModel'
 import RiskModel from '../model/RiskModel'
-import Textbox from '@/components/common/textbox/Textbox'
-import Combobox from '@/components/common/combobox/Combobox'
+import Textfield from '@/components/common/textfield/Textfield'
+// import NumberField from '@/components/common/textfield/Textfield'
+import Combofield from '@/components/common/combofield/Combofield'
 import { IconEdit, IconGarbage } from '@/components/common/icon'
 
 export default {
   name: 'Risk',
   components: {
-    Textbox,
-    Combobox,
+    Textfield,
+    // NumberField,
+    Combofield,
     IconEdit,
     IconGarbage
   },
@@ -65,11 +77,19 @@ export default {
       riskTypes: [],
       risks: [],
       fieldTypes: [],
-      fields: [],
+      mapFieldsId: [
+        '',
+        'Textfield',
+        'Numberfield',
+        'Datefield',
+        'Combofield'
+      ],
+      fieldsByRisk: [],
       form: {
         risk_type: '',
         field_type: '',
-        field_label: ''
+        field_label: '',
+        risk: ''
       }
     }
   },
@@ -86,10 +106,13 @@ export default {
   },
   watch: {
     'form.risk_type' (pRiskType) {
-      console.log('selecionei!')
-      console.log(pRiskType)
       if (pRiskType) {
         this.setRisks(pRiskType)
+      }
+    },
+    'form.risk' (pRisk) {
+      if (pRisk) {
+        this.setFieldsByRisk(pRisk)
       }
     }
   },
@@ -104,13 +127,6 @@ export default {
         this.fields.push(field)
         this.cleanFields()
       }
-    },
-    registerNewFieldsByRisk (pRisks) {
-      // To be created
-    },
-    cleanFields () {
-      this.form.fieldType = ''
-      this.form.fieldLabel = ''
     },
     setContentType () {
       this.setAllRiskTypes()
@@ -129,6 +145,11 @@ export default {
     setRisks (pRiskTypeId) {
       this.riskModel.getRisksByRiskType(pRiskTypeId)
         .then(res => (this.risks = res.data))
+        .catch(error => console.error(error))
+    },
+    setFieldsByRisk (pRiskId) {
+      this.riskModel.getFieldsByRisk(pRiskId)
+        .then(res => (this.fieldsByRisk = res.data))
         .catch(error => console.error(error))
     }
   }

@@ -1,6 +1,6 @@
-<style src="./Textbox.scss" lang="scss" scoped></style>
+<style src="./Textfield.scss" lang="scss" scoped></style>
 <template lang="html">
-  <div class="textbox">
+  <div class="textfield">
     <label :for="lblName" :class="selected">{{label}} <sup v-if="isRequired" class="asterisk">*</sup></label>
     <input type="text"
     :name="lblName"
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Textbox',
+  name: 'Textfield',
   props: {
     value: {
       default: ''

@@ -4,8 +4,8 @@
     <h1>Manage the Risk Types</h1>
     <div class="manage-risk-type--content row">
       <form @submit.stop.prevent="handleAction(form)" class="manage-risk-type--content-fields row">
-        <textbox v-model="form.name" label="name" class="col-4" :is-required="true"/>
-        <textbox v-model="form.description" label="description" class="col-6"/>
+        <textfield v-model="form.name" label="name" class="col-4" :is-required="true"/>
+        <textfield v-model="form.description" label="description" class="col-6"/>
         <button class="manage-risk-type--action-new col-2" v-if="!updateRisk">Register</button>
         <button class="manage-risk-type--action-new col-2" v-if="updateRisk">Update</button>
       </form>
@@ -36,14 +36,14 @@
 
 <script>
 import ManageRiskTypeModel from '../model/ManageRiskTypeModel'
-import Textbox from '@/components/common/textbox/Textbox'
+import Textfield from '@/components/common/textfield/Textfield'
 import { toast } from '@/components/common/alert'
 import { IconEdit, IconGarbage } from '@/components/common/icon'
 
 export default {
   name: 'ManageRiskType',
   components: {
-    Textbox,
+    Textfield,
     IconEdit,
     IconGarbage
   },

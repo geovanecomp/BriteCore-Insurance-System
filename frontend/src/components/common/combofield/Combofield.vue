@@ -1,6 +1,6 @@
-<style src="./Combobox.scss" lang="scss" scoped></style>
+<style src="./Combofield.scss" lang="scss" scoped></style>
 <template lang="html">
-  <div class="combobox">
+  <div class="combofield">
     <label :for="lblName">{{label}} <sup v-if="isRequired" class="asterisk">*</sup></label>
     <select
     :name="lblName"
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'Combobox',
+  name: 'Combofield',
   props: {
     value: {
       default: ''

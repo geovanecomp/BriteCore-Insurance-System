@@ -51,6 +51,20 @@ class GetAllFieldsByRisk(TestCase):
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_get_all_fields_by_risk(self):
+        risk_id = 1
+
+        # Get API response
+        response = client.get(reverse('fieldbyrisk-list-fields-by-risk'), {'risk_id': risk_id})
+
+        # get data from db
+        fields_by_risk = FieldByRisk.objects.filter(risk_id=risk_id)
+
+        serializer = FieldByRiskSerializer(fields_by_risk, many=True)
+
+        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 
 class GetSingleFieldByRiskTest(TestCase):
     """ Test module for GET single field API """

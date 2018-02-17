@@ -14,7 +14,7 @@ client = Client()
 
 def get_valid_object():
     field_type = FieldType.objects.create(name='Test Field Type')
-    field = Field.objects.create(name='Test Field', field_type=field_type, required=False)
+    field = Field.objects.create(label='Test Field', field_type=field_type, required=False)
 
     risk_type = RiskType.objects.create(name='Test Risk Type')
     risk = Risk.objects.create(name='Test Risk', risk_type=risk_type)
@@ -80,14 +80,15 @@ class CreateNewFieldByRiskTest(TestCase):
 
     def setUp(self):
         field_type = FieldType.objects.create(name='Test Field Type')
-        field = Field.objects.create(name='Test Field', field_type=field_type, required=False).id
+        field = Field.objects.create(label='Test Field', field_type=field_type, required=False).id
 
         risk_type = RiskType.objects.create(name='Test Risk Type')
         risk = Risk.objects.create(name='Test Risk', risk_type=risk_type).id
 
         self.valid_field = {
             'field': field,
-            'risk': risk
+            'risk': risk,
+            'value': 'Test value'
         }
 
         self.invalid_field =  get_invalid_object()
@@ -118,14 +119,16 @@ class UpdateSingleFieldByRiskTest(TestCase):
         self.field_by_risk = FieldByRisk.objects.create(**get_valid_object())
 
         field_type = FieldType.objects.create(name='Test Field Type')
-        field = Field.objects.create(name='Test Field', field_type=field_type, required=False).id
+        field = Field.objects.create(label='Test Field', field_type=field_type, required=False).id
 
         risk_type = RiskType.objects.create(name='Test Risk Type')
         risk = Risk.objects.create(name='Test Risk', risk_type=risk_type).id
 
         self.valid_field = {
             'field': field,
-            'risk': risk
+            'risk': risk,
+            'value': 'Test value'
+
         }
 
         self.invalid_field =  get_invalid_object()

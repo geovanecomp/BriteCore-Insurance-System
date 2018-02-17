@@ -12,7 +12,7 @@ def get_valid_object():
     valid_object = {
         'field_type': FieldType.objects.create(name='textfield'),
         # 'field_type_id': FieldType.objects.create(name='textfield').id,
-        'name':'Test Field1',
+        'label':'Test Field1',
         'description':'Desc test1',
         'required': False
     }
@@ -21,7 +21,7 @@ def get_valid_object():
 def get_invalid_object():
     invalid_object = {
         'field_type': '',
-        'name':'',
+        'label':'',
         'description':'',
         'required': ''
     }
@@ -75,7 +75,7 @@ class CreateNewFieldTest(TestCase):
     def setUp(self):
         self.valid_field = {
             'field_type': FieldType.objects.create(name='textfield').id,
-            'name':'Test Field1',
+            'label':'Test Field1',
             'description':'Desc test1',
             'required': False
         }
@@ -109,7 +109,7 @@ class UpdateSingleFieldTest(TestCase):
 
         self.valid_field = {
             'field_type': FieldType.objects.create(name='textfield').id,
-            'name':'Test Field1',
+            'label':'Test Field1',
             'description':'Desc test1',
             'required': False
         }

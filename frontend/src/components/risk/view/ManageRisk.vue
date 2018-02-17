@@ -3,15 +3,15 @@
   <section class="manage-risk">
     <h1>Manage the Risks</h1>
     <div class="manage-risk--type-content row">
-      <textbox v-model="form.riskName" label="name" class="col-6" :is-required="true"/>
-      <combobox v-model="form.riskType" :content="riskTypes" label="risk type" class="col-6"/>
+      <textbox v-model="form.name" label="name" class="col-6" :is-required="true"/>
+      <combobox v-model="form.risk_type" :content="riskTypes" label="risk type" class="col-6"/>
     </div>
 
     <div class="manage-risk--content row">
       <h3>Add the risk fields</h3>
       <form @submit.stop.prevent="handleNewField(form)" class="manage-risk--content-fields row">
         <combobox v-model="form.fieldType" :content="fieldTypes" label="field type" class="col-4"/>
-        <textbox v-model="form.fieldName" label="field label" class="col-6" :is-required="true"/>
+        <textbox v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
         <button class="manage-risk--action-new col-2">+</button>
       </form>
 
@@ -25,18 +25,18 @@
         </li>
       </div>
       <div class="manage-risk--list">
-        <li v-for="(field, idx) in risks" :key='idx'>
+        <li v-for="(field, idx) in fields" :key='idx'>
           <ul class="row">
             <li class="col-4">{{ field.fieldType | fieldTypeFilter(fieldTypes)}}</li>
-            <li class="col-6">{{ field.fieldName }}</li>
-            <li class="col-2"><span @click="deleteRisk(risk, idx)"><icon-garbage class="icon-garbage"/></span></li>
+            <li class="col-6">{{ field.fieldLabel }}</li>
+            <li class="col-2"><span @click="removeField(idx)"><icon-garbage class="icon-garbage"/></span></li>
           </ul>
         </li>
       </div>
     </div>
 
     <div class="actions col-12">
-      <button class="button--save col-4" @click="registerNewFieldsByRisk(risks)">Save</button>
+      <button class="button--save col-4" disabled @click="registerNewFieldsByRisk(fields)">Save</button>
     </div>
   </section>
 </template>
@@ -63,12 +63,12 @@ export default {
       manageRiskModel: null,
       riskTypes: [],
       fieldTypes: [],
-      risks: [],
+      fields: [],
       form: {
-        riskName: '',
+        name: '',
         riskType: '',
         fieldType: '',
-        fieldName: ''
+        fieldLabel: ''
       }
     }
   },
@@ -85,71 +85,27 @@ export default {
   methods: {
     handleNewField (pForm) {
       if (pForm) {
-        let tempObj = {
-          name: pForm.fieldName,
-          description: pForm.fieldName,
-          field_type: pForm.fieldType,
-          required: false
+        let field = {
+          fieldLabel: pForm.fieldLabel,
+          fieldType: pForm.fieldType
         }
-        this.manageRiskModel.createField(tempObj).then((res) => {
-          this.risks.push({...res.data})
-          this.cleanFields()
-        })
+
+        this.fields.push(field)
+        this.cleanFields()
       }
     },
     registerNewFieldsByRisk (pRisks) {
-      if (this.risks.length > 0) {
-        let riskObj = {
-          name: this.form.riskName,
-          risk_type: this.form.riskType
-        }
-        this.manageRiskModel.createRisk(riskObj)
-          .then((res) => {
-            this.manageRiskModel.createFieldsByRisk(res.data.id, pRisks)
-              .then((res) => {
-                this.cleanFields()
-                toast.success('Fields by risk created', 'Success!')
-              })
-          })
-          .catch((error) => {
-            console.error(error)
-            toast.error('Server internal error', 'Error!')
-          })
-      } else {
-        toast.error('A field by risk is required', 'Field Required')
-      }
-    },
-    updateRisk (pRisk) {
-      this.manageRiskModel.updateRisk(pRisk.id, pRisk)
-        .then((res) => {
-          this.cleanFields()
-          toast.success('Risk updated', 'Success!')
-        })
-        .catch((error) => {
-          console.error(error)
-          toast.error('Server internal error', 'Error!')
-        })
-    },
-    deleteRisk (pRisk, index) {
-      this.manageRiskModel.deleteRisk(pRisk.id)
-        .then((res) => {
-          this.risks.splice(-1, index)
-          toast.success('Risk removed', 'Success!')
-        })
-        .catch((error) => {
-          console.error(error)
-          toast.error('Server internal error', 'Error!')
-        })
-    },
-    editRisk (pRisk) {
-      this.updateRisk = true
-      this.form = pRisk
+      // To be created
     },
     cleanFields () {
       this.form.fieldType = ''
-      this.form.fieldName = ''
+      this.form.fieldLabel = ''
     },
     getContentType () {
+      this.riskTypes = this.getAllRiskTypes()
+      this.fieldTypes = this.getAllFieldTypes()
+    },
+    getAllRiskTypes () {
       this.manageRiskTypeModel.getAllRiskTypes()
         .then((res) => {
           this.riskTypes = res.data
@@ -157,7 +113,8 @@ export default {
         .catch((error) => {
           console.error(error)
         })
-
+    },
+    getAllFieldTypes () {
       this.manageRiskModel.getAllFieldTypes()
         .then((res) => {
           this.fieldTypes = res.data

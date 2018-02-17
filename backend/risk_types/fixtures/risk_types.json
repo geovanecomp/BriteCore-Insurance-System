@@ -1,0 +1,18 @@
+[
+  {
+    "model": "risk_types.RiskType",
+    "pk": 1,
+    "fields": {
+      "name": "Car",
+      "description": "A car risk type"
+    }
+  },
+  {
+    "model": "risk_types.RiskType",
+    "pk": 2,
+    "fields": {
+      "name": "House",
+      "description": "A house risk type"
+    }
+  }
+]

@@ -1,21 +1,21 @@
-<style src="./ManageRisk.scss" lang="scss" scoped></style>
+<style src="./Risk.scss" lang="scss" scoped></style>
 <template>
-  <section class="manage-risk">
-    <h1>Manage the Risks</h1>
-    <div class="manage-risk--type-content row">
+  <section class="risk">
+    <h1>Select the risk</h1>
+    <div class="risk--type-content row">
       <combobox v-model="form.risk_type" :content="riskTypes" label="risk type" class="col-6"/>
-      <textbox v-model="form.name" label="name" class="col-6" :is-required="true"/>
+      <combobox v-model="form.risk" :content="risks" label="risk" class="col-6"/>
     </div>
 
-    <div class="manage-risk--content row">
+    <div class="risk--content row">
       <h3>Add the risk fields</h3>
-      <form @submit.stop.prevent="handleNewField(form)" class="manage-risk--content-fields row">
+      <form @submit.stop.prevent="handleNewField(form)" class="risk--content-fields row">
         <combobox v-model="form.fieldType" :content="fieldTypes" label="field type" class="col-4"/>
         <textbox v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
-        <button class="manage-risk--action-new col-2">+</button>
+        <button class="risk--action-new col-2">+</button>
       </form>
 
-      <div class="manage-risk--content-header">
+      <div class="risk--content-header">
         <li>
           <ul class="row">
             <li class="col-4">Field Type</li>
@@ -24,7 +24,7 @@
           </ul>
         </li>
       </div>
-      <div class="manage-risk--list">
+      <div class="risk--list">
         <li v-for="(field, idx) in fields" :key='idx'>
           <ul class="row">
             <li class="col-4">{{ field.fieldType | fieldTypeFilter(fieldTypes)}}</li>
@@ -44,12 +44,13 @@
 <script>
 import ManageRiskTypeModel from '@/components/risk-type/model/ManageRiskTypeModel'
 import ManageRiskModel from '../model/ManageRiskModel'
+import RiskModel from '../model/RiskModel'
 import Textbox from '@/components/common/textbox/Textbox'
 import Combobox from '@/components/common/combobox/Combobox'
 import { IconEdit, IconGarbage } from '@/components/common/icon'
 
 export default {
-  name: 'ManageRisk',
+  name: 'Risk',
   components: {
     Textbox,
     Combobox,
@@ -60,26 +61,37 @@ export default {
     return {
       manageRiskTypeModel: null,
       manageRiskModel: null,
+      riskModel: null,
       riskTypes: [],
+      risks: [],
       fieldTypes: [],
       fields: [],
       form: {
-        name: '',
-        riskType: '',
-        fieldType: '',
-        fieldLabel: ''
+        risk_type: '',
+        field_type: '',
+        field_label: ''
       }
     }
+  },
+  mounted () {
+    this.manageRiskModel = ManageRiskModel
+    this.manageRiskTypeModel = ManageRiskTypeModel
+    this.riskModel = RiskModel
+    this.setContentType()
   },
   filters: {
     fieldTypeFilter (pParam, pFieldTypes) {
       return pFieldTypes.filter(item => item.id === pParam)[0].name
     }
   },
-  mounted () {
-    this.manageRiskModel = ManageRiskModel
-    this.manageRiskTypeModel = ManageRiskTypeModel
-    this.setContentType()
+  watch: {
+    'form.risk_type' (pRiskType) {
+      console.log('selecionei!')
+      console.log(pRiskType)
+      if (pRiskType) {
+        this.setRisks(pRiskType)
+      }
+    }
   },
   methods: {
     handleNewField (pForm) {
@@ -102,7 +114,7 @@ export default {
     },
     setContentType () {
       this.setAllRiskTypes()
-      this.fieldTypes = this.setAllFieldTypes()
+      this.setAllFieldTypes()
     },
     setAllRiskTypes () {
       this.manageRiskTypeModel.getAllRiskTypes()
@@ -112,6 +124,11 @@ export default {
     setAllFieldTypes () {
       this.manageRiskModel.getAllFieldTypes()
         .then(res => (this.fieldTypes = res.data))
+        .catch(error => console.error(error))
+    },
+    setRisks (pRiskTypeId) {
+      this.riskModel.getRisksByRiskType(pRiskTypeId)
+        .then(res => (this.risks = res.data))
         .catch(error => console.error(error))
     }
   }

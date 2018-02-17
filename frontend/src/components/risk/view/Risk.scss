@@ -1,29 +1,29 @@
 @import "src/style/_colors";
 
-.manage-risk {
+.risk {
   position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
 
-  .manage-risk--type-content {
+  .risk--type-content {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     text-align: left;
   }
 
-  .manage-risk--content {
+  .risk--content {
     display: flex;
     padding: 10px 10px;
     margin-top: 30px;
 
-   .manage-risk--content-fields {
+   .risk--content-fields {
       display: flex;
       flex-direction: row;
       text-align: left;
 
-      .manage-risk--action-new {
+      .risk--action-new {
         border: 0;
         border-radius: 20px;
         background-color: $primary;
@@ -35,18 +35,18 @@
       }
     }
 
-    .manage-risk--content-header {
+    .risk--content-header {
       display: flex;
       flex-direction: column;
       text-align: left;
       font-size: .9em;
       font-weight: bold;
-      background-color: $header-default;
+      background-color: $primary;
       width: 100%;
       color: #fff;
     }
 
-    .manage-risk--list {
+    .risk--list {
       display: flex;
       flex-direction: column;
       text-align: left;
@@ -85,9 +85,9 @@
       border: 0;
       border-radius: 20px;
       color: #fff;
-      font-size: 1em;
       background-color: $success;
       padding: 10px 50px;
+      font-size: 1em;
     }
   }
 }

@@ -8,10 +8,13 @@
         <router-link to="/risk-type">Create the risk types</router-link>
       </li>
       <li>
-        <router-link to="/risk">Manage them</router-link>
+        <router-link to="/manage-risk">Manage them</router-link>
       </li>
       <li>
-        <a href="#" target="_blank">
+        <router-link to="/risk">Risks</router-link>
+      </li>
+      <li>
+        <a href="https://github.com/geovanecomp/BriteCore-Insurance-System" target="_blank">
           About the project
         </a>
       </li>

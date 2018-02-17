@@ -8,7 +8,7 @@
     </div>
 
     <div class="manage-risk--content row">
-
+      <h3>Add the risk fields</h3>
       <form @submit.stop.prevent="handleNewField(form)" class="manage-risk--content-fields row">
         <combobox v-model="form.fieldType" :content="fieldTypes" label="field type" class="col-4"/>
         <textbox v-model="form.fieldName" label="field label" class="col-6" :is-required="true"/>

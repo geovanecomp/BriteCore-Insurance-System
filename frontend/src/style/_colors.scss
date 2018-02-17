@@ -4,7 +4,7 @@ $light-default: #6f6f6f;
 
 $scroll-bar-default: #F5F5F5;
 
-$header-default: darken(#1d4063, 2);
+$header-default: #028fa9;
 $menu-options-default: darken($header-default, 10);
 
 $focus-light: #4b64f1;
@@ -15,3 +15,5 @@ $success: #60b964;
 $success-hover: lighten($success, 5);
 
 $cancel: #bd3737;
+
+$grid-even-lines: #d4f3fc

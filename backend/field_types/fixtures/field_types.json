@@ -6,5 +6,29 @@
       "name": "Textfield",
       "description": "A textfield"
     }
+  },
+  {
+    "model": "field_types.FieldType",
+    "pk": 2,
+    "fields": {
+      "name": "Numberfield",
+      "description": "A numberfield"
+    }
+  },
+  {
+    "model": "field_types.FieldType",
+    "pk": 3,
+    "fields": {
+      "name": "Datefield",
+      "description": "A datefield"
+    }
+  },
+  {
+    "model": "field_types.FieldType",
+    "pk": 4,
+    "fields": {
+      "name": "Enumfield",
+      "description": "A enumfield"
+    }
   }
 ]

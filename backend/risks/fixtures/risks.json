@@ -1,0 +1,20 @@
+[
+  {
+    "model": "risks.Risk",
+    "pk": 1,
+    "fields": {
+      "name": "Ferrari",
+      "description": "A great car",
+      "risk_type": "1"
+    }
+  },
+  {
+    "model": "risks.Risk",
+    "pk": 2,
+    "fields": {
+      "name": "Big house",
+      "description": "A big red house",
+      "risk_type": "2"
+    }
+  }
+]

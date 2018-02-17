@@ -26,7 +26,6 @@ export default {
       default: 'Text'
     },
     content: {
-      type: Array,
       default () { return [] }
     },
     label: {

@@ -1,0 +1,38 @@
+[
+  {
+    "model": "fields.Field",
+    "pk": 1,
+    "fields": {
+      "label": "Ferrari's model",
+      "description": "A ferrari model",
+      "field_type": "1"
+    }
+  },
+  {
+    "model": "fields.Field",
+    "pk": 2,
+    "fields": {
+      "label": "Ferrari's year",
+      "description": "A ferrari year",
+      "field_type": "2"
+    }
+  },
+  {
+    "model": "fields.Field",
+    "pk": 3,
+    "fields": {
+      "label": "Ferrari's release date",
+      "description": "A ferrari release date",
+      "field_type": "3"
+    }
+  },
+  {
+    "model": "fields.Field",
+    "pk": 4,
+    "fields": {
+      "label": "Ferrari's color",
+      "description": "A ferrari color",
+      "field_type": "4"
+    }
+  }
+]

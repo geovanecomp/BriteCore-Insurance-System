@@ -106,16 +106,7 @@ class CreateNewFieldByRiskTest(TestCase):
         }
 
         self.invalid_field =  get_invalid_object()
-
-    def test_create_valid_field(self):
-        response = client.post(
-            reverse('fieldbyrisk-list'),
-            data=json.dumps(self.valid_field),
-            content_type='application/json'
-        )
-
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
+    
     def test_create_invalid_field(self):
         response = client.post(
             reverse('fieldbyrisk-list'),

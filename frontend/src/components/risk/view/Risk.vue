@@ -8,46 +8,22 @@
     </div>
 
     <div class="risk--content row">
-      <h3>Add the risk fields</h3>
-      <!-- <combofield v-model="form.risk" :content="risks" label="risk" class="col-6"/>
-      <combofield v-model="form.risk" :content="risks" label="risk" class="col-6"/>
-      <textfield v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
-      <textfield v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/> -->
+      <h3 v-if="fieldsByRisk.length">Risk fields / information</h3>
 
-      <component v-for="(field, idx) in fieldsByRisk" :key='idx'
-      :is="Textfield">
+      <component class="fields-by-risk-elements"
+        v-for="(fieldByRisk, idx) in fieldsByRisk" :key='idx'
+        :is="mapFieldsId[fieldByRisk.field.id]"
+        :label="fieldByRisk.field.label"
+        v-model="fieldsByRisk[idx].value"
+        :content="fieldsByRisk[idx].value"
+      >
       </component>
-
-      <form @submit.stop.prevent="handleNewField(form)" class="risk--content-fields row">
-        <combofield v-model="form.fieldType" :content="fieldTypes" label="field type" class="col-4"/>
-        <textfield v-model="form.fieldLabel" label="field label" class="col-6" :is-required="true"/>
-        <button class="risk--action-new col-2">+</button>
-      </form>
-
-      <div class="risk--content-header">
-        <li>
-          <ul class="row">
-            <li class="col-4">Field Type</li>
-            <li class="col-6">Field Label</li>
-            <li class="col-2"></li>
-          </ul>
-        </li>
-      </div>
-      <div class="risk--list">
-        <li v-for="(field, idx) in fields" :key='idx'>
-          <ul class="row">
-            <li class="col-4">{{ field.fieldType | fieldTypeFilter(fieldTypes)}}</li>
-            <li class="col-6">{{ field.fieldLabel }}</li>
-            <li class="col-2"><span @click="removeField(idx)"><icon-garbage class="icon-garbage"/></span></li>
-          </ul>
-        </li>
-      </div>
     </div>
 
     <div class="actions col-12">
       <button class="button--save col-4" disabled @click="registerNewFieldsByRisk(fields)">Save</button>
     </div>
-    {{fieldsByRisk}}
+
   </section>
 </template>
 
@@ -56,7 +32,8 @@ import ManageRiskTypeModel from '@/components/risk-type/model/ManageRiskTypeMode
 import ManageRiskModel from '../model/ManageRiskModel'
 import RiskModel from '../model/RiskModel'
 import Textfield from '@/components/common/textfield/Textfield'
-// import NumberField from '@/components/common/textfield/Textfield'
+import Numberfield from '@/components/common/numberfield/Numberfield'
+import Datefield from '@/components/common/datefield/Datefield'
 import Combofield from '@/components/common/combofield/Combofield'
 import { IconEdit, IconGarbage } from '@/components/common/icon'
 
@@ -64,8 +41,9 @@ export default {
   name: 'Risk',
   components: {
     Textfield,
-    // NumberField,
+    Numberfield,
     Combofield,
+    Datefield,
     IconEdit,
     IconGarbage
   },

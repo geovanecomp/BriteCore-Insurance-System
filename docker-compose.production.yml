@@ -8,8 +8,8 @@ services:
         ports:
             - "80:80"
         volumes:
-            - "./nginx.conf:/etc/nginx/nginx.conf"
-            - "./uwsgi_params:/etc/nginx/uwsgi_params"
+            - "./frontend/nginx.conf:/etc/nginx/nginx.conf"
+            - "./frontend/uwsgi_params:/etc/nginx/uwsgi_params"
 
     backend:
         image: geovanecomp/britecorebackend:1.0

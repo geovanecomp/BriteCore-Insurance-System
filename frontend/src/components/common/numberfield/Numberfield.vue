@@ -1,8 +1,8 @@
 <style src="./Numberfield.scss" lang="scss" scoped></style>
 <template lang="html">
-  <div class="textfield">
+  <div class="numberfield">
     <label :for="lblName" :class="selected">{{label}} <sup v-if="isRequired" class="asterisk">*</sup></label>
-    <input type="text"
+    <input type="number"
     :name="lblName"
     :id="lblName"
     @focus="upLabel"

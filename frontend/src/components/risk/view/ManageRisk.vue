@@ -4,7 +4,7 @@
     <h1>Manage the Risks</h1>
     <div class="manage-risk--type-content row">
       <combofield v-model="form.risk_type" :content="riskTypes" label="risk type" class="col-6"/>
-      <textfield v-model="form.name" label="name" class="col-6" :is-required="true"/>
+      <textfield v-model="form.name" label="risk name" class="col-6" :is-required="true"/>
     </div>
 
     <div class="manage-risk--content row">

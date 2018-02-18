@@ -1,24 +1,29 @@
+<style src="./WelcomePage.scss" lang="scss" scoped></style>
 <template>
   <div class="hello">
-    <img src="/static/images/britecore_logo.png" class="logo-resize">
-    <h1>{{ welcomeMessage }}</h1>
-    <h2>Risk Management</h2>
-    <ul>
-      <li>
-        <router-link to="/risk-type">Create the risk types</router-link>
-      </li>
-      <li>
-        <router-link to="/manage-risk">Manage them</router-link>
-      </li>
-      <li>
-        <router-link to="/risk">Risks</router-link>
-      </li>
-      <li>
-        <a href="https://github.com/geovanecomp/BriteCore-Insurance-System" target="_blank">
-          About the project
-        </a>
-      </li>
-    </ul>
+    <div class="header-content">
+      <img src="/static/images/britecore_logo.png" class="logo-resize">
+      <h1>{{ welcomeMessage }}</h1>
+    </div>
+    <div class="body-content">
+      <h2>Risk Management</h2>
+      <ul>
+        <li>
+          <router-link class="button" to="/risk-type">Create the risk types</router-link>
+        </li>
+        <li>
+          <router-link class="button" to="/manage-risk">Manage them</router-link>
+        </li>
+        <li>
+          <router-link class="button" to="/risk">Risks</router-link>
+        </li>
+        <li>
+          <a class="button" href="https://github.com/geovanecomp/BriteCore-Insurance-System" target="_blank">
+            About the project
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -33,35 +38,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-h1 {
-  font-weight: bold;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #0290a9;
-  font-weight: bold;
-}
-
-.logo-resize {
-  max-width: 40%;
-  height: auto;
-}
-
-.contact-information > h2 {
-  margin-top: 10%;
-  height: 10px;
-}
-</style>

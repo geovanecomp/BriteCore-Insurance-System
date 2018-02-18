@@ -1,0 +1,68 @@
+@import "src/style/_colors";
+h1, h2 {
+  font-weight: bold;
+}
+
+h1 {
+  font-weight: bold;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #0290a9;
+  font-weight: bold;
+}
+
+.button {
+    background-color: $primary;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.logo-resize {
+  max-width: 30%;
+  height: auto;
+}
+
+.contact-information > h2 {
+  margin-top: 10%;
+  height: 10px;
+}
+
+.hello {
+  height: 50vH;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.body-content {
+  display: flex;
+  flex-direction: column;
+  vertical-align: center;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}

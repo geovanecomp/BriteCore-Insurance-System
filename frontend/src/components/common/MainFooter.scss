@@ -1,0 +1,30 @@
+@import "src/style/_colors";
+h2 {
+  font-weight: normal;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0;
+}
+li {
+  display: inline-block;
+  margin: 2px, 5px;
+}
+a {
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.footer {
+  color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #028fa9;
+}

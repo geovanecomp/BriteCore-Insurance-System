@@ -1,6 +1,7 @@
 <style src="./style/index.scss" lang="scss"></style>
 <template lang="html">
   <div id="app">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico">
     <router-view name="header">
       <main-header class="header"/>
     </router-view>

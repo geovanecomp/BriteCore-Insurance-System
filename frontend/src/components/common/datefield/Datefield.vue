@@ -2,7 +2,7 @@
 <template lang="html">
   <div class="datefield">
     <label :for="lblName">{{label}}</label>
-    <input type="date" v-model="valueDate" />    
+    <input type="date" v-model="valueDate" />
   </div>
 </template>
 

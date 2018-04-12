@@ -48,7 +48,7 @@ Here are a few frontend screens:
 7. Execute the script db_initialize.sh to populate the database;
 8. Access the localhost browser URL and, have fun =).
 
-## How to execute the production version
+## How to execute the production version (Temporary Off)
  1. Just access: http://ec2-54-198-232-208.compute-1.amazonaws.com/
 
 

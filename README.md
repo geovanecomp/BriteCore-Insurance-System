@@ -42,11 +42,11 @@ Here are a few frontend screens:
 ## How to execute a developer version
 1. Download and install Docker (Version 3);
 2. Download and install Docker-compose;
-3. Clone the project;
-5. From the project root folder execute to build and up the containers: sudo docker-compose -f docker-compose.yml -f docker-compose.development.yml up --build;
-6. Access the backend container: sudo docker-compose -f docker-compose.yml -f docker-compose.development.yml exec backend bash;
-7. Execute the script db_initialize.sh to populate the database;
-8. Access the localhost browser URL and, have fun =).
+3. Clone this project;
+5. From the project root folder execute to build and up the containers: `docker-compose -f docker-compose.yml -f docker-compose.development.yml up --build`;
+6. Access the backend container and execute the script *db_initialize.sh* to populate the database: `docker-compose -f docker-compose.yml -f docker-compose.development.yml exec backend bash -c "sh db_initialize.sh"`;
+7. Access `http://localhost:8080` to open the software or `http://localhost:8000` to open the API documentation.
+8. Finally, have fun =).
 
 ## How to execute the production version (Temporary Off)
  1. Just access: http://ec2-54-198-232-208.compute-1.amazonaws.com/

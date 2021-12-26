@@ -1,13 +1,14 @@
 # BriteCore-Insurance-System
-Welcome to BriteCore Insurance System. The project's goal is to build in one week a system that be able to insurers define their own data model, and for that provide a fully tested API to make possible built any frontend system using it.
+Welcome to BriteCore Insurance System. The project's goal is to build in one week a system that enables Insurers to define their own data model, and for that, was provided a fully tested API to allow interaction by any frontend system, such as VueJS.
 
+In summary, this project was created using MySQL to create a dynamic data model, Django Restful framework for the backend API, and the frontend was built using the modern javascript framework VueJS.
 
-In summarize, this project was created using MySQL to create a dynamic data model, Django Restful framework for the backend API and the frontend was built using the modern javascript framework VueJS. Was created mainly two internal projects, one called by backend and another frontend, and both of then do the communication using the REST pattern. To Devops, was utilized Docker, Docker-compose and Amazon AWS to deploy it.
+For that, was created two internal projects, one called by backend and another called by frontend, and the communication between them was done through the REST pattern. The DevOps base was built using Docker, Docker-compose, and Amazon AWS to deploy it.
 
 ## What was done
 
 ###  Data
-Was created two data models, one that was implemented as a MVP ( Minimum Viable Product) and another to be the best approach, but consequently, would spend more time.
+Two data models were created, one that was implemented as an MVP ( Minimum Viable Product) and another to be the best approach, but consequently, would spend more time.
 
 Here are (The MVP and the best approach): ***(My personal bonus)**
 * https://github.com/geovanecomp/BriteCore-Insurance-System/blob/master/docs/model/Implemented%20MVP.jpeg
@@ -16,7 +17,7 @@ Here are (The MVP and the best approach): ***(My personal bonus)**
 ### Backend
 * The backend was built using the community best practices and TDD oriented, with that, the API was fully tested (around 50 tests!). The API was created using the framework Django 2.0 and python 3.6.
 
-* The API is prepared to all http verbs / REST. It's means, anyone is able to request a full CRUD of risk types, risk, field types, fields and fields by risk. ***(My personal bonus)**
+* The API is prepared for all HTTP verbs / REST. It means anyone is able to request a full CRUD of risk types, risk, field types, fields, and fields by risk. ***(My personal bonus)**
 
 Here are a few localhost API screens:
 * https://github.com/geovanecomp/BriteCore-Insurance-System/blob/master/docs/api/api_root_page.jpeg
@@ -27,7 +28,7 @@ Here are a few localhost API screens:
 ### Frontend
 * The frontend was built using the modern javascript framework Vuejs, HTML5, CSS3 / Sass. 
 
-* Was created three pages, one to make all CRUD API requests for Risk Types, one to simulate how create the riks and their fields (almost finished), and finally the main page, that get all risk fields and show them in a appropriate way.  ***(My personal bonus)**
+* Three pages were created, one to make all CRUD API requests for Risk Types, one to simulate how to create the riks and their fields (_almost finished_), and finally the main page, which gets all risk fields and shows them in an appropriate way.  ***(My personal bonus)**
 
 Here are a few frontend screens:
 * https://github.com/geovanecomp/BriteCore-Insurance-System/blob/master/docs/system/welcome_page.jpeg
@@ -36,7 +37,7 @@ Here are a few frontend screens:
 * https://github.com/geovanecomp/BriteCore-Insurance-System/blob/master/docs/system/main_screen.jpeg
 
 ### Devops ***(My personal mega bonus)**
-* The project was built using Docker and Docker-compose, with that anyone can make an easy and faster installation using these containers. With that, for example, was really easy up the application to AWS - Amazon Web Services.
+* The project was built using Docker and Docker-compose, with that anyone can make an easy and faster installation using these containers. With that, for example, was really easy to deploy the application to the AWS (Amazon Web Services).
 
 
 ## How to execute a developer version
